@@ -1,0 +1,36 @@
+<ion-view>
+	<ion-nav-title>{{ title }}</ion-nav-title>
+	<ion-content class="padding">
+		<ion-refresher pulling-text="{{ 'mm.core.pulltorefresh' | translate }}" ng-if="loaded" on-refresh="refreshListaClase()"></ion-refresher>
+		<mm-loading hide-until="loaded">
+	        <ul class="list">
+	        	<li class="item" ng-class="{'item-checkbox': id_evento>0}" ng-repeat="alumno in alumnos" >
+	        		<label ng-if="id_evento > 0" class="checkbox"><input type="checkbox" ng-click="seleccionar( alumno.id );" /></label>
+	        		{{alumno.num}}.- {{alumno.fullname}} <span class="badge badge-assertive">{{ alumno.incidencia }}</span>
+	        	</li>
+	        </ul>
+	        <div ng-if="!alumnos || alumnos.length <= 0" class="padding">
+	        	<p>{{ 'mma.sallenet.nohayalumnos' | translate }}</p>
+	        </div>
+		</mm-loading>
+	</ion-content>
+</ion-view>
+<ion-footer-bar ng-if="( id_evento > 0 )">
+	<div class='item tabs tabs-icon-left' ng-if="isAppOnLine()">
+		Asistencia
+		<a ng-repeat="item in items_asistencia" class="tab-item active">
+			<button style='background-color:{{item.color}}' ng-click="setIncidencia(id_evento,item.id,1,'',item.abreviatura);">{{ item.abreviatura }}</button>
+		</a>
+		<a class="tab-item active">
+			<button ng-click='setIncidencia(id_evento,-232,1,"","");'>{{ 'mma.sallenet.borra' | translate }}</button>
+		</a>
+		Actitud
+		<a ng-repeat="item in items_actitud" class="tab-item active">
+			<button style='background-color:{{item.color}}' ng-click="setIncidencia(id_evento,item.id,2,'',item.abreviatura);">{{ item.abreviatura }}</button>
+		</a>
+		<a class="tab-item active">
+			<button ng-click='setIncidencia(id_evento,-232,2,"","");'>{{ 'mma.sallenet.borra' | translate }}</button>
+		</a>
+	</div>
+	<p ng-if="!isAppOnLine();">{{ 'mma.sallenet.paraestablecerincidenciascontectate' | translate }}</p>
+</ion-footer-bar>

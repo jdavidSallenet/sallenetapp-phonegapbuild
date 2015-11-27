@@ -8,7 +8,7 @@
     "wsservice" : "moodle_mobile_app",
     "wsextservice" : "sallenetapp",
     "demo_sites": {
-    				"profe": {"url": "http://localhost/sallenet", "username": "davidhernandosanjuan", "password": "davidH+2015app"}, 
-    				"alumno": {"url": "http://localhost/sallenet", "username": "miguelhernandokuzniatsova", "password": "davidH+2015app"}},
+    				"profe": {"url": "https://formacion.sallenet.org", "username": "davidhernandosanjuan", "password": "davidH+2015app"}, 
+    				"alumno": {"url": "http://formacion.sallenet.org", "username": "miguelhernandokuzniatsova", "password": "davidH+2015app"}},
     "gcmpn": "694767596569"
 }
