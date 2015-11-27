@@ -9,33 +9,9 @@
 					<p>{{ev.inicio | mmaSallenetFecha }}: {{ev.inicio | mmaSallenetHora }}-{{ev.fin | mmaSallenetHora }}</p>
 				</div>
 				<div class="item item-body" ng-if="ev.tarea||ev.planificacion||profesor||alumno">
-					<p ng-if="ev.planificacion||profesor"><b>{{ 'mma.sallenet.planificacion' | translate }}: </b>
-						{{ ev.planificacion }}<i class='ion-edit' ng-if='profesor' ng-click='toggleNota(0,ev.id)'></i>
-						<div ng-if='muestra_plani[ev.id]'>
-							<form ng-submit="setInformacionEventos(ev.id,0,texto_plani);">
-								<textarea ng-model="texto_plani" placeholder="{{ ev.planificacion }}" style='width: 100%;'></textarea>
-								<button type='submit' class='button button-block button-positive'>Enviar</button>
-							</form>
-						</div>
-					</p>
-					<p ng-if="ev.tarea||profesor"><b>{{ 'mma.sallenet.tareas' | translate }}: </b>
-						{{ ev.tarea }} <i class='ion-edit' ng-if='profesor' ng-click='toggleNota(1,ev.id);'></i>
-						<div ng-if='muestra_tarea[ev.id]'>
-							<form ng-submit="setInformacionEventos(ev.id,1,texto_tarea);">
-								<textarea ng-model="texto_tarea" placeholder="{{ ev.tarea }}" style='width: 100%;'></textarea>
-								<button type='submit' class='button button-block button-positive'>Enviar</button>
-							</form>
-						</div>
-					</p>
-					<p ng-if="(profesor||alumno)"><b>{{ 'mma.sallenet.notas' | translate }}: </b>
-						{{ ev.notas }}<i class='ion-edit' ng-if='(profesor||alumno)' ng-click='toggleNota(2,ev.id)'></i>
-						<div ng-if='muestra_notas[ev.id]'>
-							<form ng-submit="setInformacionEventos(ev.id,2,texto_nota);">
-								<textarea ng-model="texto_nota" placeholder="{{ ev.notas }}" style='width: 100%;'></textarea>
-								<button type='submit' class='button button-block button-positive'>Enviar</button>
-							</form>
-						</div>
-					</p>
+					<p ng-if="ev.tarea||profesor"><b>{{ 'mma.sallenet.tareas' | translate }}: </b><i class='ion-edit' ng-if='profesor' ng-click='setInformacionEventos(ev.id,1,ev.tarea)'></i>{{ ev.tarea }} </p>
+					<p ng-if="ev.planificacion||profesor"><b>{{ 'mma.sallenet.planificacion' | translate }}: </b><i class='ion-edit' ng-if='profesor' ng-click='setInformacionEventos(ev.id,0,ev.planificacion)'></i>{{ ev.planificacion }}</p>
+					<p ng-if="(profesor||alumno)"><b>{{ 'mma.sallenet.notas' | translate }}: </b><i class='ion-edit' ng-if='(profesor||alumno)' ng-click='setInformacionEventos(ev.id,2,ev.notas)'></i>{{ ev.notas }}</p>
 				</div>
 				<div class="item tabs tabs-secondary tabs-icon-left" ng-if="profesor">
 					<a class="tab-item" ui-sref="site.mm_course({course: {id: ev.courseid , fullname: ev.nombre}})">
@@ -46,7 +22,7 @@
 						<i class='icon ion-clock'></i>
 						{{ 'mma.sallenet.distribucion' | translate }}
 					</a>
-					<a class="tab-item" ui-sref="site.sallenet-listaclase({id_clase: ev.id_clase, nombre: ev.nombre, id_evento:ev.id})">
+					<a class="tab-item" ui-sref="site.sallenet-listaclase({id_clase: ev.id_clase, nombre: ev.nombre})">
 						<i class='icon ion-ios-list-outline'></i>
 						{{ 'mma.sallenet.incidencias' | translate }}
 					</a>

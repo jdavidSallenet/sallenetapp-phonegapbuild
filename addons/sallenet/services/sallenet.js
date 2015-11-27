@@ -173,17 +173,16 @@ angular.module('mm.addons.sallenet')
     	return $mmSite.invalidateWsCacheForKey( self._getCacheKeyForAlumnosClase( id_clase ) );
     };
     self._getCacheKeyForAlumnosClase = function(id_clase){
-    	return "mmaSallenet:AlumnosClase-"+id_clase;
+    	return "mmaSallenet:Distribucion-"+id_clase;
     };
     self._getalumnosclase = function(params,presets){
     	return $mmSite.read('sallenetapp_getAlumnosClase',params,presets);
     };
-    self.getAlumnosClase = function(id_clase,id_evento){
+    self.getAlumnosClase = function(id_clase){
     	var presets = {
     		cacheKey: self._getCacheKeyForAlumnosClase(id_clase)
     	},params = {
-    		id_clase: id_clase,
-    		id_evento: id_evento
+    		id_clase: id_clase
     	};
     	return self._getalumnosclase(params,presets);
     };
