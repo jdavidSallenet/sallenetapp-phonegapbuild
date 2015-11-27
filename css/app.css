@@ -7678,7 +7678,7 @@ a.button {
 em {
   font-style: italic; }
 
-..bar-content {
+.bar-content {
   border-color: transparent;
   background-color: #2C7AFF;
   background-image: linear-gradient(0deg, transparent, transparent 50%, transparent 50%);
