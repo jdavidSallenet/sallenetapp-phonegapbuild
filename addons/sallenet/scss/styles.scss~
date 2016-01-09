@@ -24,35 +24,35 @@ input.mma-sallenet-picker {
 
 .bar-content {
   border-color: transparent;
-  background-color: #2a4291;
+  background-color: #2C7AFF;
   background-image: linear-gradient(0deg, transparent, transparent 50%, transparent 50%);
-  color: #f8dd1f; }
+  color: #FFFFFF; }
   .bar-content .title {
-    color: #f8dd1f; }
+    color: #efb235; }
   .bar-content .button {
     border-color: transparent;
-    background-color: #2a4291;
-    color: #f8dd1f; }
+    background-color: #2C7AFF;
+    color: #efb235; }
     .bar-content .button.active, .bar-content .button.activated .button.hover {
       border-color: transparent;
-      background-color: #2a4291;
+      background-color: #2C7AFF;
       box-shadow: inset 0 1px 4px rgba(239, 178, 53, 1); }
 
 .bar-side-menu {
   border-color: transparent;
-  background-color: #2a4291;
+  background-color: #2C7AFF;
   background-image: linear-gradient(0deg, transparent, transparent 50%, transparent 50%);
-  color: #f8dd1f;
+  color: #efb235;
   height: 80px !important; }
   .bar-side-menu .title {
-    color: #f8dd1f; }
+    color: #efb235; }
   .bar-side-menu .item {
     background: transparent;
     border: none; }
   .bar-side-menu .item-avatar, .bar-side-menu .item-media {
     margin-top: 0px !important; }
     .bar-side-menu .item-avatar h2, .bar-side-menu .item-media h2, .bar-side-menu .item-avatar p, .bar-side-menu .item-media p {
-      color: #f8dd1f; }
+      color: #efb235; }
 
 .capitalize::first-letter{
 	text-transform: capitalize;
@@ -64,29 +64,4 @@ input.mma-sallenet-picker {
 
 .pointer-cursor{
 	cursor: pointer;
-}
-
-.full-width{
-	width: 100%;
-}
-
-.full-height{
-	height: 100%;
-}
-
-.full-border{
-	border: 1px solid #000;
-}
-
-.hour-cell{
-	padding: 30px 0px 30px 0px;
-}
-
-.text-bold{
-	font-weight: bold;
-}
-
-.font-size-11{
-	font-weight: normal;
-	font-size: 11px;
 }

@@ -22,7 +22,7 @@ angular.module('mm.addons.sallenet')
  * @name mmaSallenetHorarioCtrl
  */
 .controller('mmaSallenetHorarioCtrl', function($scope, $stateParams, $mmApp, $mmaSallenet, $mmSite, $timeout, $mmEvents, $window,
-        $ionicScrollDelegate, mmUserProfileState, $mmUtil, $interval, $log, $ionicHistory, $ionicPlatform,
+        $ionicScrollDelegate, mmUserProfileState, $mmUtil, $interval, $log, $ionicHistory, $ionicPlatform,$ionicModal,
         mmCoreEventKeyboardShow, mmCoreEventKeyboardHide) {
 	$scope.loaded = false;
 	var id = $stateParams.id;
@@ -32,6 +32,16 @@ angular.module('mm.addons.sallenet')
 	$scope.profesor = $stateParams.profesor;
 	$scope.alumno = $stateParams.alumno;
 	$scope.title = "Horario";
+	$scope.muestra_plani = [];
+	$scope.muestra_tarea = [];
+	$scope.muestra_notas = [];
+	$scope.muestra_horario = true;
+	
+	if ( id_clase > 0 ){
+		$scope.title = "Eventos - "+nombre.substr(6);
+	}else {
+		$scope.title = "Horario - "+nombre;
+	}
 	
 	function consigueEventos( ){
 		return $mmaSallenet.getEventosUsuario(id_moodle).then( function(evs){
@@ -39,12 +49,17 @@ angular.module('mm.addons.sallenet')
 			var d = new Date();
 			angular.forEach( evs.eventos , function(v){
 				if ( id_clase > 0 && id_clase != v.id_clase ){
-					// No se hace nada
+					// No se hace nada, solo ocultar el horario pues estamos entrando desde Profesor -> mis clases
+					$scope.muestra_horario = false;
 				}else{
 					v.ahora = Math.floor(d.getTime()/1000);
+					$scope.muestra_plani[v.id] = false;
+					$scope.muestra_tarea[v.id] = false;
+					$scope.muestra_notas[v.id] = false;
 					array.push(v);
 				}
 			});
+			
 			$scope.eventos = array;
 		},function(error){
 			if ( typeof error === 'string' ){
@@ -54,9 +69,23 @@ angular.module('mm.addons.sallenet')
 			}
 		});
 	}
+	
+
+	$scope.toggleNota = function( tipo , id ){
+		if ( tipo == 0 ){
+			$scope.muestra_plani[id] = !$scope.muestra_plani[id];
+		}else if ( tipo == 1 ){
+			$scope.muestra_tarea[id] = !$scope.muestra_tarea[id];
+		}else if ( tipo == 2 ){
+			$scope.muestra_notas[id] = !$scope.muestra_notas[id];
+		}
+	}
+	
+	
+	
 	$scope.setInformacionEventos = function( id_evento , tipo , texto ){
 		if ( !texto ) texto = "";
-		var texto = prompt('mma.sallenet.introducetexto',texto.trim());
+//		var texto = prompt('mma.sallenet.introducetexto',texto.trim());
 		if ( !$mmApp.isOnline() ){
 			// Por si acaso se ha colado algo
 			return;

@@ -10,35 +10,42 @@
            			<h4 class="cabecera_bloqueada">{{alumno.nombre}}</h4>
            			<img ng-src="{{alumno.profileimageurl}}" style="width:80%" alt="" role="presentation" mm-external-content ng-if="alumno.profileimageurl">
                     <img src="img/user-avatar.png" alt="" style="width:80%" role="presentation" ng-if="!alumno.profileimageurl">
-                    <div class='badge badge-assertive' style='position:absolute;top:95px;left:0px;' ng-if="alumno.incidencia">{{ alumno.incidencia }}</div>
+                    <div class='badge badge-assertive' style='position:absolute;top:95px;left:0px;' ng-if="alumno.asistencia || alumno.observacion || alumno.actitud"><span ng-if='alumno.asistencia'>{{ alumno.asistencia }}</span><span ng-if="alumno.asistencia && alumno.actitud">&nbsp;|&nbsp;</span><span ng-if='alumno.actitud'>{{ alumno.actitud }}</span><span ng-if="( alumno.asistencia || alumno.actitud ) && alumno.observacion">&nbsp;|&nbsp;</span><span ng-click='muestraObservacion(alumno.observacion);' ng-if='alumno.observacion'>O</span></div>
            		</div>
             </div>
             <div ng-repeat="alumno in alumnos" id='al_{{ alumno.id }}' ng-click="seleccionar( alumno.id );" ng-class="{'seleccionado': seleccionados[alumno.id] }" class="draggable" style='width: {{ancho_foto}}px; border:0.1em solid;padding:2px;text-align:center;top:{{alumno.top - alto_min }}px;left:{{ (alumno.left - retroceso ) * proporcion }}px;position:absolute;'>
          		<h4 class="cabecera_bloqueada">{{alumno.nombre}}</h4>
          		<img ng-src="{{alumno.profileimageurl}}" style="width:80%" alt="" role="presentation" mm-external-content ng-if="alumno.profileimageurl">
                 <img src="img/user-avatar.png" alt="" style="width:80%" role="presentation" ng-if="!alumno.profileimageurl">
-                <div class='badge badge-assertive' style='position:absolute;top:95px;left:0px;' ng-if="alumno.incidencia">{{ alumno.incidencia }}</div>
+                <div class='badge badge-assertive' style='position:absolute;top:95px;left:0px;' ng-if="alumno.asistencia || alumno.observacion || alumno.actitud"><span ng-if='alumno.asistencia'>{{ alumno.asistencia }}</span><span ng-if="alumno.asistencia && alumno.actitud">&nbsp;|&nbsp;</span><span ng-if='alumno.actitud'>{{ alumno.actitud }}</span><span ng-if="( alumno.asistencia || alumno.actitud ) && alumno.observacion">&nbsp;|&nbsp;</span><span ng-click='muestraObservacion(alumno.observacion);' ng-if='alumno.observacion'>O</span></div>
          	</div>
         </mm-loading>
+        <br /><p></p>&nbsp;<br /><p></p>&nbsp; <br /><p></p>&nbsp;<br /><p></p>&nbsp; <br /><p></p>&nbsp;<br /><p></p>&nbsp; <br /><p></p>&nbsp;<br /><p></p>&nbsp; <br /><p></p>&nbsp;<br /><p></p>&nbsp; <br /><p></p>&nbsp;<br /><p></p>&nbsp; <br /><p></p>&nbsp;<br /><p></p>&nbsp; <br /><p></p>&nbsp;<br /><p></p>&nbsp;
     </ion-content>
-</ion-view>
-
-<ion-footer-bar ng-if="( id_evento > 0 )">
-	<div class='item tabs tabs-icon-left' ng-if="isAppOnLine()">
-		Asistencia
-		<a ng-repeat="item in items_asistencia" class="tab-item active">
-			<button style='background-color:{{item.color}}' ng-click="setIncidencia(id_evento,item.id,1,'',item.abreviatura);">{{ item.abreviatura }}</button>
-		</a>
-		<a class="tab-item active">
-			<button ng-click='setIncidencia(id_evento,-232,1,"","");'>{{ 'mma.sallenet.borra' | translate }}</button>
-		</a>
-		Actitud
-		<a ng-repeat="item in items_actitud" class="tab-item active">
-			<button style='background-color:{{item.color}}' ng-click="setIncidencia(id_evento,item.id,2,'',item.abreviatura);">{{ item.abreviatura }}</button>
-		</a>
-		<a class="tab-item active">
-			<button ng-click='setIncidencia(id_evento,-232,2,"","");'>{{ 'mma.sallenet.borra' | translate }}</button>
-		</a>
+    <div class="bar bar-subfooter wrapper" ng-if="( id_evento > 0 )" ng-show="!show_items">
+	
+		<div class='row tabs-icon-left button-bar' ng-if="isAppOnLine()" style="background-color: #2a4291">
+			<a class="col-17">Asistencia</a>
+			<div ng-repeat="item in items_asistencia" class="tab-item active col-17" style="font-size: 65%">
+					<button  class ="itemsn" style='background-color:{{item.color}}' ng-click="setIncidencia(id_evento,item.id,1,'',item.abreviatura);"></button>
+					<a>{{ item.abreviatura }}</a>
+			</div>
+			<div class="tab-item active col-15">
+				<button class="button icon ion-trash-b" style="color: #f8dd1f" ng-click='setIncidencia(id_evento,-232,2,"","");'></button>
+			</div>
+		</div>
+	</div>
+	<div class="bar bar-footer wrapper" ng-if="( id_evento > 0 )" ng-show="!show_items">
+		<div class="row tabs-icon-left  button-bar" ng-if="isAppOnLine()" style="background-color: #2a4291">
+			<a class="col-20">Actitud</a>
+			<div ng-repeat="item in items_actitud" class="tab-item active col-17" style="font-size: 65%">
+				<button  class ="itemsn" style='background-color:{{item.color}}' ng-click="setIncidencia(id_evento,item.id,1,'',item.abreviatura);"></button>
+					<a>{{ item.abreviatura }}</a>
+			</div>
+			<div class="tab-item active col-15">
+				<button class="button icon ion-trash-b" style="color: #f8dd1f" ng-click='setIncidencia(id_evento,-232,2,"","");'></button>
+			</div>
+		</div>
 	</div>
 	<h2 ng-if="!isAppOnLine();">{{ 'mma.sallenet.paraestablecerincidenciascontectate' | translate }}</h2>
-</ion-footer-bar>
+</ion-view>

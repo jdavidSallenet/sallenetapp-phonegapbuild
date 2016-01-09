@@ -107,7 +107,8 @@ angular.module('mm.addons.sallenet', ['mm.core'])
         	url: '/sallenet-listaclase',
         	params: {
         		id_clase: null,
-        		nombre: null
+        		nombre: null,
+        		id_evento: 0
         	},
         	views: {
         		'site': {

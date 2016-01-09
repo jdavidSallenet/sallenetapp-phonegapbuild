@@ -1,54 +1,78 @@
-<ion-view view-title="{{'mma.sallenet.sallenet-titulo' | translate}}">
+<ion-view view-title="Bienvenido {{nombre}}">
 	<ion-content padding="true">
 		<ion-refresher pulling-text="{{ 'mm.core.pulltorefresh' | translate }}" ng-if="loaded" on-refresh="refreshSallenet()"></ion-refresher>
-		<h2 style='text-align:center;'>Bienvenido {{nombre}}</h2>
+		<!--  <h2 style='text-align:center;'>Bienvenido {{nombre}}</h2> -->
 		<section class='list card' ng-if='ispadre'>
-			<a class='item' title="{{'mma.sallenet.mypadre' | translate}}">
-				<h2>{{'mma.sallenet.mypadre' | translate}}</h2>
-			</a>
-			<div class='item item-text-wrap'>
-				<div class='item tabs tabs-icon-left'>
-					<a ng-repeat='hijo in hijos' ui-sref="site.sallenet-hijo({id_hijo:hijo.id,id_moodle:hijo.id_moodle,nombre:hijo.nombre})" class="tab-item active">
-						<img ng-src="{{hijo.profileimageurl}}" style="height:100%" alt="" role="presentation" mm-external-content ng-if="hijo.profileimageurl">
-						<img src="img/user-avatar.png" alt="" style="height:100%" role="presentation" ng-if="!hijo.profileimageurl">
-						{{hijo.nombre}}
-					</a> 
+				<section ng-repeat="hijo in hijos">
+				<div class='list row row-center'>
+						<div class="tab-item active col">
+							<img class="tab-item active iconsn" ng-src="{{hijo.profileimageurl}}" alt="" role="presentation" mm-external-content ng-if="hijo.profileimageurl">
+							<img class="tab-item active iconsn" src="img/user-avatar.png" alt="" role="presentation" ng-if="!hijo.profileimageurl">
+							<div class='item-text-wrap' >{{hijo.nombre}}</div>
+						</div> 	
+						<div class="tab-item active col">
+								<div ui-sref="site.sallenet-horario({id: hijo.id,id_moodle:hijo.id_moodle,nombre: hijo.nombre})" class="button iconsn iconsn_horario"></div> 
+								<div class='item-text-wrap' style='text-align:center;' >{{ 'mma.sallenet.horario' | translate }}</div>
+						</div> 
+						<div class="tab-item active col">
+								<div ui-sref="site.sallenet-incidencias({id_hijo: hijo.id,id_moodle:hijo.id_moodle,nombre: hijo.nombre})" class="button iconsn iconsn_incidenciasal"></div>
+									<div class='item-text-wrap' >{{ 'mma.sallenet.incidencias' | translate }} </div>
+								
+						</div> 
+						<div class="tab-item active col">
+								<div ui-sref="site.sallenet-hijo({id_hijo:hijo.id,id_moodle:hijo.id_moodle,nombre:hijo.nombre})" class="button iconsn iconsn_notasal" ></div>
+									<div class='item-text-wrap' >{{ 'mma.sallenet.calificaciones' | translate }}</div>
+						</div>
 				</div>
-			</div>
+				</section>
 		</section>
 		<section class='list card' ng-if='isprofesor'>
-			<a class='item' title="{{'mma.sallenet.myprofesor' | translate}}">
-				<h2>{{'mma.sallenet.myprofesor' | translate}}</h2>
+		<!--  <h2>{{'mma.sallenet.myprofesor' | translate}}</h2>-->
+			<a class='item-text-wrap' style="padding-left:5%" title="{{'mma.sallenet.myprofesor' | translate}}">
+				{{'mma.sallenet.myprofesor' | translate}}
 			</a>
-			<div class='item-text-wrap'>
-				<div class='item tabs tabs-icon-left'>
-					<a class="tab-item active" ui-sref="site.sallenet-horario({id: id,id_moodle:id_moodle,nombre:nombre,profesor:1})">
-						<i class='icon ion-clock'></i>
-						{{ 'mma.sallenet.horario' | translate }}
-					</a> 
-					<a class="tab-item active" ui-sref="site.sallenet-clases">
-						<i class='icon ion-calendar'></i>
-						{{ 'mma.sallenet.misclases' | translate }}
-					</a>
+			<div class='list row row-center' style="width:80%;padding-left:5%">
+				<div class="tab-item active col" ui-sref="site.sallenet-horario({id: id,id_moodle:id_moodle,nombre:nombre,profesor:1})">
+					<div class='button iconsn iconsn_horario '></div>
+					<div class='item-text-wrap' >{{ 'mma.sallenet.horario' | translate }}</div>
+				</div> 
+				<div class="tab-item active col" ui-sref="site.sallenet-clases">
+					<div class='button iconsn iconsn_misclases'></div>
+					<div class='item-text-wrap' >{{ 'mma.sallenet.misclases' | translate }}</div>
 				</div>
 			</div>
 		</section>
 		<section class='list card' ng-if='isalumno'>
+		<div class='list row row-center' style="width:80%;padding-left:5%">
+			<!--  	
 			<a class='item' title="{{'mma.sallenet.myalumno' | translate}}">
 				<h2>{{'mma.sallenet.myalumno' | translate}}</h2>
 			</a>
-			<div class='item item-text-wrap'>
-				<div class='item tabs tabs-icon-left'>
-					<a class="tab-item active" ui-sref="site.sallenet-horario({id: id,id_moodle:id_moodle,nombre:nombre,profesor:0,alumno:1})">
-						<i class='icon ion-clock'></i>
-						{{ 'mma.sallenet.horario' | translate }}
-					</a> 
-					<a class="tab-item active" ui-sref="site.sallenet-incidencias({id_hijo: id,id_moodle:id_moodle,nombre: nombre})">
-						<i class='icon ion-calendar'></i>
-						{{ 'mma.sallenet.incidencias' | translate }}
-					</a>  
-				</div>
-			</div>
+			-->
+			<div class="tab-item active col">
+					<div ui-sref="site.sallenet-horario({id: id,id_moodle:id_moodle,nombre:nombre,profesor:0,alumno:1})" class="button  iconsn iconsn_horario"></div> 
+					<div class='item-text-wrap' style='text-align:center;' >{{ 'mma.sallenet.horario' | translate }}</div>
+			</div> 
+			<div class="tab-item active col">
+					<div ui-sref="site.sallenet-incidencias({id_hijo: id,id_moodle:id_moodle,nombre: nombre})" class="button iconsn iconsn_incidenciasal"></div>
+						<div class='item-text-wrap' >{{ 'mma.sallenet.incidencias' | translate }} </div>
+			</div> 
+		</div>
 		</section>
 	</ion-content>
+<!-- Comento esta parte por si se decide implantar en la app enlaces a twitter - facebook y la web del centro en un futuro
+	 <bar footer-bar style="background-color:#2a4291" >
+		 <div class="row" >
+		 <div class="col text-center">
+	            <button class="button button-icon icon ion-star" style="color:#f8dd1f"></button>
+	        </div>
+	        <div class="col text-center">
+	            <button class="button button-icon icon ion-social-twitter twitter" style="color:#f8dd1f" ></button>
+	        </div>
+	        <div class="col text-center">
+	            <button class="button button-icon icon ion-social-facebook" style="color:#f8dd1f"></button>
+	        </div>
+	    </div>
+    </bar footer-bar>
+ -->  
 </ion-view>

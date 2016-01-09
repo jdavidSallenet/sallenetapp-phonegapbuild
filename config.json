@@ -1,7 +1,7 @@
 {
-    "app_id" : "org.sallenet.app",
-    "versioncode" : "01",
-    "versionname" : "0.1",
+    "app_id" : "284DD83445.com.sallenetorg.sallenetapp",
+    "versioncode" : "05",
+    "versionname" : "0.5",
     "cache_expiration_time" : 300000,
     "default_lang" : "es",
     "languages": {"en": "English", "es": "Español"},

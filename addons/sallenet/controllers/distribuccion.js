@@ -124,7 +124,13 @@ angular.module('mm.addons.sallenet')
 						for ( var i = 0 ; i < $scope.alumnos.length ; i++ ){
 							if ( !$scope.alumnos[i] ) break;
 							if ( $scope.alumnos[i]["id"] == id_alumno ){
-								$scope.alumnos[i]["incidencia"] = texto_inc;
+								if ( tipo == 1 ){
+									$scope.alumnos[i]["asistencia"] = texto_inc;
+								}else if ( tipo == 2 ){
+									$scope.alumnos[i]["actitud"] = texto_inc;
+								}else if ( tipo == 3 ){
+									$scope.alumnos[i]["observacion"] = texto_inc;
+								}
 							}
 							
 						}
@@ -132,7 +138,13 @@ angular.module('mm.addons.sallenet')
 							if ( !$scope.pupitres[i] ) break;
 							for ( var j = 0 ; j < $scope.pupitres[i]["alumnos"].length ; j++ ){
 								if ( $scope.pupitres[i]["alumnos"][j]["id"] == id_alumno ){
-									$scope.pupitres[i]["alumnos"][j]["incidencia"] = texto_inc;
+									if ( tipo == 1 ){
+										$scope.pupitres[i]["alumnos"][j]["asistencia"] = texto_inc;
+									}else if ( tipo == 2 ){
+										$scope.pupitres[i]["alumnos"][j]["actitud"] = texto_inc;
+									}else if ( tipo == 3 ){
+										$scope.pupitres[i]["alumnos"][j]["observacion"] = texto_inc;
+									}
 								}
 							}
 						}
